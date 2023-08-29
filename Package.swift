@@ -17,13 +17,15 @@ let package = Package(
     )
   ],
   dependencies: [
+    .package(url: "https://github.com/apple/swift-cmark.git", branch: "gfm"),
     .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.10.0")
   ],
   targets: [
-    .target(name: "cmark-gfm"),
     .target(
       name: "MarkdownUI",
-      dependencies: ["cmark-gfm"]
+      dependencies: [
+        .product(name: "cmark-gfm", package: "swift-cmark"),
+      ]
     ),
     .testTarget(
       name: "MarkdownUITests",
